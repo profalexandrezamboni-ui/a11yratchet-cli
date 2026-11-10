@@ -1,0 +1,17 @@
+name: "A11yRatchet — WCAG 2.2 AA & EN 301 549 CI Regression Gate"
+description: "Freeze legacy accessibility debt and block net-new WCAG 2.2 AA / EN 301 549 regressions in GitHub PRs."
+author: "profalexandrezamboni-ui"
+branding:
+  icon: "check-circle"
+  color: "purple"
+inputs:
+  report_path:
+    description: "Path to axe-core JSON report"
+    required: false
+    default: "axe-report.json"
+runs:
+  using: "composite"
+  steps:
+    - name: Run A11yRatchet Evaluation
+      shell: bash
+      run: python3 "${{ github.action_path }}/a11yratchet_engine.py"
